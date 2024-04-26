@@ -433,5 +433,3 @@ merged_df = pd.concat([
 # Export the merged DataFrame to an Excel file
 merged_df.to_excel("output_all_candlestick_patterns.xlsx", index=False)
 
-!pip freeze > requirements.txt
-
