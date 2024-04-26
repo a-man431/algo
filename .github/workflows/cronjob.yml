@@ -23,7 +23,7 @@ jobs:
 
     - name: Run Python Script
       run: |
-        python your_script.py
+        python buy_master.py
 
     - name: Send Email
       uses: dawidd6/action-send-mail@v3
