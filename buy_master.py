@@ -11,7 +11,7 @@ from datetime import datetime, timedelta
 import pandas as pd
 from nselib import capital_market as cm
 
-nifty_500_list = pd.read_csv('https://raw.githubusercontent.com/a-man431/algo/main/ind_nifty500list.csv')
+nifty_500_list = pd.read_csv('ind_nifty500list.csv')
 
 def fetch_data_for_date(date):
     formatted_date = date.strftime('%d-%m-%Y')
