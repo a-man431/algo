@@ -1,0 +1,43 @@
+name: Run Python Code and Send Email
+
+on:
+  schedule:
+    - cron: '43 14 * * *'  # Schedule to run every 5 minutes
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install Dependencies
+      run: |
+        pip install -r requirements.txt  # Assuming you have a requirements file
+
+    - name: Run Python Script
+      run: |
+        python buy_master.py
+
+    - name: Send Email
+      uses: dawidd6/action-send-mail@v3
+      with:
+        server_address: smtp.gmail.com
+        server_port: 587
+        username: ${{ secrets.GMAIL_USERNAME }}
+        password: ${{ secrets.GMAIL_PASSWORD }}
+        subject: Daily Report
+        body: Please find the attached daily report.
+        to: your_email@gmail.com
+        from: your_email@gmail.com
+        attachments: |
+          output_all_bullish_candlestick_patterns.xlsx
+          
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
